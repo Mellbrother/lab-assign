@@ -1,0 +1,32 @@
+<div class="d-flex align-items-center">
+	<h1>学生一覧</h1>
+  <div class="ml-auto">
+    <%= link_to '登録者一覧', registered_students_register_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>名前</th>
+      <th>学籍番号</th>
+      <th>GPA</th>
+      <th>GP</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |st| %>
+      <tr>
+        <td><%= link_to st.name, registered_student_path(st) %></td>
+        <td><%= st.mynumber %></td>
+        <td><%= st.gpa %></td>
+        <td><%= st.gp %></td>
+        <% unless @registered_student_ids.include?(st.id) %>
+          <td><%= button_to '登録', registered_students_path(params: { registered_student: {student_id: st.id }}), class: 'btn btn-success mr-3' %></td>
+        <% else %>
+          <td><%= button_to '登録済み', registered_students_path(params: { registered_student: {student_id: st.id }}),disabled: true, class: 'btn btn-secondary mr-3' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

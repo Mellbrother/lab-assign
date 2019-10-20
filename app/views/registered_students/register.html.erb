@@ -1,0 +1,33 @@
+<div class="d-flex align-items-center">
+	<h1>登録者一覧</h1>
+  <div class="ml-auto">
+    <%= link_to '一覧', registered_students_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>順位</th>
+      <th>名前</th>
+      <th>学籍番号</th>
+      <th>GPA</th>
+      <th>GP</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each.with_index(1) do |st, i| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= link_to st.name, registered_student_path(st) %></td>
+        <td><%= st.mynumber %></td>
+        <td><%= st.gpa %></td>
+        <td><%= st.gp %></td>
+        <td><%= link_to '↑', registered_students_up_path(params: { registered_student: {student_id: st.id }}) , method: :put, class: 'btn btn-danger mr-3' %></td>
+        <td><%= link_to '↓', registered_students_down_path(params: { registered_student: {student_id: st.id }}) , method: :put, class: 'btn btn-primary mr-3' %></td>
+        <td><%= link_to '登録解除', @registered_students.find_by(student_id: st.id) , method: :delete, class: 'btn btn-dark mr-3' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
