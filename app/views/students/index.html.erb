@@ -4,3 +4,27 @@
 		<%= link_to '新規登録', new_student_path, class: 'btn btn-outline-dark' %>
 	</div>
 </div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>名前</th>
+      <th>学籍番号</th>
+      <th>GPA</th>
+      <th>GP</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |st| %>
+      <tr>
+        <td><%= link_to st.name, st %></td>
+        <td><%= st.mynumber %></td>
+        <td><%= st.gpa %></td>
+        <td><%= st.gp %></td>
+        <td><%= link_to '編集', edit_student_path(st), class: 'btn btn-primary mr-3' %></td>
+        <td><%= link_to '削除', st, method: :delete, data: {confirm: "学生「#{st.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger mr-3' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

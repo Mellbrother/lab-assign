@@ -10,7 +10,7 @@ ja:
     models:
       student: 学生
     attributes:
-      student_candidate:
+      student:
         id: ID
         mynumber: 学籍番号
         name: 氏名
