@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mynumber: MyString
+  name: MyString
+  gpa: 1
+  gp: 1
+
+two:
+  mynumber: MyString
+  name: MyString
+  gpa: 1
+  gp: 1
