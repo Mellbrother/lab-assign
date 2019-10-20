@@ -10,16 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191017070036) do
+ActiveRecord::Schema.define(version: 2019_10_17_082743) do
 
-  create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "mynumber",                            null: false
-    t.string   "name",                                null: false
-    t.float    "gpa",        limit: 24, default: 0.0
-    t.integer  "gp",                    default: 0
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["mynumber"], name: "index_students_on_mynumber", unique: true, using: :btree
+  create_table "students", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "mynumber", null: false
+    t.string "name", null: false
+    t.float "gpa", default: 0.0
+    t.integer "gp", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mynumber"], name: "index_students_on_mynumber", unique: true
+  end
+
+  create_table "teachers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "mynumber", null: false
+    t.string "name", null: false
+    t.text "research"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mynumber"], name: "index_teachers_on_mynumber", unique: true
   end
 
 end
