@@ -1,2 +1,8 @@
-<h1>Teachers#edit</h1>
-<p>Find me in app/views/teachers/edit.html.erb</p>
+<div class="d-flex align-items-center">
+	<h1>教員の編集</h1>
+	<div class="ml-auto">
+		<%= link_to '教員一覧', teachers_path, class: 'btn btn-outline-dark' %>
+	</div>
+</div>
+
+<%= render partial: 'form', locals: { teacher: @teacher } %>

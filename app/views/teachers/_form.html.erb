@@ -1,0 +1,15 @@
+<%= form_with model: teacher, local: true do |f| %>
+	<div class="form-group">
+		<%= f.label :name, '名前' %>
+		<%= f.text_field :name, class: 'form-control' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :mynumber, '学籍番号' %>
+		<%= f.text_field :mynumber, class: 'form-control' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :research, '研究内容' %>
+		<%= f.text_area :research, rows: 5, class: 'form-control', id: 'teacher_research' %>
+	</div>
+	<%= f.submit '保存', class: 'btn btn-primary' %>
+<% end %>

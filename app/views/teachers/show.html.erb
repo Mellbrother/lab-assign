@@ -1,2 +1,24 @@
-<h1>Teachers#show</h1>
-<p>Find me in app/views/teachers/show.html.erb</p>
+<div class="d-flex align-items-center mb-3">
+	<h1>教員の詳細</h1>
+	<div class="ml-auto">
+		<%= link_to '一覧', teachers_path, class: 'btn btn-outline-dark' %>
+	</div>
+</div>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:name) %></th>
+      <td><%= @teacher.name %></td>
+    </tr>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:id) %></th>
+      <td><%= @teacher.mynumber %></td>
+    </tr>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:research) %></th>
+      <td><%= simple_format(h(@teacher.research),{}, sanitize: false, wrapper_tag: "div") %></td>
+    </tr>
+  </tbody>
+</table>
+<td><%= link_to '編集', edit_teacher_path, class: 'btn btn-primary mr-3' %></td>
+<td><%= link_to '削除', @teacher, method: :delete, data: {confirm: "教員「#{@teacher.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger mr-3' %></td>
