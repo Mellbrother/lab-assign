@@ -1,0 +1,2 @@
+module RegisteredTeachersHelper
+end

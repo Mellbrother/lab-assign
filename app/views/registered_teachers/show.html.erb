@@ -1,0 +1,26 @@
+<div class="d-flex align-items-center mb-3">
+  <h1>教員の詳細</h1>
+  <div class="ml-auto">
+    <%= link_to '一覧', registered_teachers_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:name) %></th>
+      <td><%= @teacher.name %></td>
+    </tr>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:id) %></th>
+      <td><%= @teacher.mynumber %></td>
+    </tr>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:research) %></th>
+      <td><%= simple_format(h(@teacher.research),{}, sanitize: false, wrapper_tag: "div") %></td>
+    </tr>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:gp) %></th>
+      <td><%= @teacher.gp %></td>
+    </tr>
+  </tbody>
+</table>

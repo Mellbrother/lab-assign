@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center">
+	<h1>登録者一覧</h1>
+  <div class="ml-auto">
+    <%= link_to '一覧', registered_teachers_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>順位</th>
+      <th>名前</th>
+      <th>教員番号</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teachers.each do |t| %>
+      <tr>
+        <td><%= @registered_teachers.find_by(teacher_id: t.id).rank %></td>
+        <td><%= link_to t.name, registered_teacher_path(t) %></td>
+        <td><%= t.mynumber %></td>
+        <td><%= link_to '↑', registered_teachers_up_path(params: { id: t.id }), method: :put, class: 'btn btn-danger mr-3' %></td>
+        <td><%= link_to '↓', registered_teachers_down_path(params: { id: t.id }), method: :put, class: 'btn btn-primary mr-3' %></td>
+        <td><%= link_to '登録解除', @registered_teachers.find_by(teacher_id: t.id) , method: :delete, class: 'btn btn-dark mr-3' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
