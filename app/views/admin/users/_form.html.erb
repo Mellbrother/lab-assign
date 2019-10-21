@@ -1,9 +1,11 @@
-<% if user.errors.present? %>
-	<ul id="error_explanation">
-		<% user.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
-		<% end %>
-	</ul>
+<% if flash[:error_messages] %>
+	<div class="alert alert-danger">
+		<ul>
+			<% flash[:error_messages].each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
 <% end %>
 
 <%= form_with model: [:admin, user], local: true do |f| %>

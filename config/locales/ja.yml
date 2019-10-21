@@ -12,6 +12,7 @@ ja:
       teacher: 教員
       registered_student: 登録された学生
       registered_teacher: 登録された教員
+      user: ユーザー
     attributes:
       student:
         id: ID

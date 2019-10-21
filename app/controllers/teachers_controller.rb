@@ -11,7 +11,7 @@ class TeachersController < ApplicationController
   end
 
   def new
-  	@teacher = Teacher.new
+  	@teacher = Teacher.new(flash[:teacher])
   end
 
   def edit
@@ -26,8 +26,14 @@ class TeachersController < ApplicationController
 
   def create
   	teacher = Teacher.new(teacher_params)
-  	teacher.save!
-  	redirect_to teachers_url, notice: "学生「#{teacher.name}」を登録しました"
+  	if teacher.save
+    	redirect_to teachers_url, notice: "学生「#{teacher.name}」を登録しました"
+    else
+      redirect_to new_teacher_path, flash: {
+        teacher: teacher,
+        error_messages: teacher.errors.full_messages
+      }
+    end
   end
 
   def destroy

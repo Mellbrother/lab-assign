@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
   end
 
   def new
-  	@student = Student.new
+  	@student = Student.new(flash[:student])
   end
 
   def edit
@@ -26,8 +26,14 @@ class StudentsController < ApplicationController
 
   def create
   	student = Student.new(student_params)
-  	student.save!
-  	redirect_to students_url, notice: "学生「#{student.name}」を登録しました"
+  	if student.save
+    	redirect_to students_url, notice: "学生「#{student.name}」を登録しました"
+    else
+      redirect_to new_student_path, flash: {
+        student: student,
+        error_messages: student.errors.full_messages
+      }
+    end
   end
 
   def destroy

@@ -16,6 +16,9 @@
           <% if current_user %>
             <% if current_user.admin? %>
               <li class="nav-item">
+                    <%= link_to "システムの概要", root_path, class: "nav-link" %>
+                </li>
+              <li class="nav-item">
                     <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
                 </li>
               <li class="nav-item">
@@ -25,17 +28,17 @@
                   <%= link_to "教員一覧(編集)", teachers_path, class: "nav-link" %>
                 </li>
             <% end %>
-            <% if current_user.admin? || current_user.teacher? %>
+            <% if current_user.teacher? %>
               <li class="nav-item">
                   <%= link_to "学生一覧", registered_students_path, class: "nav-link" %>
                 </li>
             <% end %>
-            <% if current_user.admin? || current_user.student? %>
+            <% if current_user.student? %>
               <li class="nav-item">
                   <%= link_to "教員一覧", registered_teachers_path, class: "nav-link" %>
                 </li>
             <% end %>
-            <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %></li>
           <% else %>
             <li><%= link_to 'ログイン', login_path %></li>
           <% end %>
