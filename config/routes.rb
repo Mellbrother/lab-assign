@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    resources :users
+  end
   #root to: 'students#index'
   put 'registered_students/up', to: 'registered_students#rank_up'
   put 'registered_students/down', to: 'registered_students#rank_down'

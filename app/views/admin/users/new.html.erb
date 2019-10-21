@@ -1,0 +1,9 @@
+<div class="d-flex align-items-center">
+	<h1>新規登録</h1>
+	<div class="ml-auto">
+		<%= link_to '一覧', admin_users_path, class: 'btn btn-outline-dark' %>
+	</div>
+</div>
+
+<%= render partial: 'form', locals: { user: @user } %>
+
