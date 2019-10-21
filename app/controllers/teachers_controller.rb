@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
   def index
-  	@teachers = Teacher.all
+  	@q = Teacher.all.ransack(params[:q])
+    @teachers = @q.result(distinct: true).page(params[:page])
   end
 
   def show
