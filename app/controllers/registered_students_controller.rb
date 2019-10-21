@@ -4,7 +4,7 @@ class RegisteredStudentsController < ApplicationController
 
   def index
   	@q = Student.all.ransack(params[:q])
-  	@students = @q.result(distinct: true)
+  	@students = @q.result(distinct: true).page(params[:page])
   	@registered_student_ids = RegisteredStudent.all.map{|rs| rs.student_id}
   end
 
