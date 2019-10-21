@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   	   	redirect_to registered_students_path, notice: 'ログインしました'
       end
   	else
-  		render :new, notice: 'ログインに失敗しました'
+  		 redirect_to login_path, flash: { error_messages: "ログインに失敗しました"}
   	end
   end
 
