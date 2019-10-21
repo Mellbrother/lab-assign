@@ -1,5 +1,6 @@
 class RegisteredStudentsController < ApplicationController
   before_action :remove_null_registered_students, only: [:register]
+  before_action :registered_student_rank_adjust, only: [:register]
 
   def index
   	@students = Student.all
@@ -11,12 +12,8 @@ class RegisteredStudentsController < ApplicationController
   end
 
   def register
-  	RegisteredStudent.all.sort{ |a,b| a.rank <=> b.rank }.each.with_index(1) do |rs, i|
-  		next if rs.rank == i
-  		rs.rank = i
-  		rs.save!
-  	end
   	@registered_students = RegisteredStudent.all
+  	@students = @registered_students.sort{ |a,b| a.rank <=> b.rank }.map { |rs| Student.find(rs.student_id) }
   end
 
   def create
@@ -62,13 +59,16 @@ class RegisteredStudentsController < ApplicationController
   end
 
   def remove_null_registered_students
-  	@students = RegisteredStudent.all.map{|rs|
-  		sc = Student.find_by(id: rs.student_id)
-  		unless sc
-  			rs.delete
-  			return nil
-  		end
-  		sc
-  	}.compact
+  	RegisteredStudent.all.each do |rs|
+  		rs.delete unless Student.find_by(id: rs.student_id)
+  	end
+  end
+
+  def registered_student_rank_adjust
+  	RegisteredStudent.all.sort{ |a,b| a.rank <=> b.rank }.each.with_index(1) do |rs, i|
+  		next if rs.rank == i
+  		rs.rank = i
+  		rs.save!
+  	end
   end
 end
