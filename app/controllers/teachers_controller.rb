@@ -1,4 +1,6 @@
 class TeachersController < ApplicationController
+  before_action :require_admin
+
   def index
   	@q = Teacher.all.ransack(params[:q])
     @teachers = @q.result(distinct: true).page(params[:page])
@@ -37,5 +39,9 @@ class TeachersController < ApplicationController
 
   def teacher_params
   	params.require(:teacher).permit(:mynumber, :name, :research)
+  end
+
+   def require_admin
+    redirect_to root_path unless current_user.admin?
   end
 end

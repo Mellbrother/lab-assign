@@ -1,4 +1,5 @@
 class RegisteredStudentsController < ApplicationController
+  before_action :require_teacher
   before_action :remove_null_registered_students, only: [:register]
   before_action :registered_student_rank_adjust, only: [:register]
 
@@ -71,5 +72,9 @@ class RegisteredStudentsController < ApplicationController
   		rs.rank = i
   		rs.save!
   	end
+  end
+
+   def require_teacher
+    redirect_to root_path unless current_user.teacher?
   end
 end

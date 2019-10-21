@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'students#index'
+  
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  root to: 'sessions#new'
   namespace :admin do
     resources :users
   end

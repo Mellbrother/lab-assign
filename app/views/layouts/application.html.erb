@@ -14,10 +14,10 @@
         <%= link_to "研究室配属システム", "#", class: "navbar-brand" %>
         <ul class="navbar-nav ml-auto">
           <% if current_user %>
-            <li class="nav-item">
-                  <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
-              </li>
             <% if current_user.admin? %>
+              <li class="nav-item">
+                    <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
+                </li>
               <li class="nav-item">
                   <%= link_to "学生一覧(編集)", students_path, class: "nav-link" %>
                 </li>
@@ -25,12 +25,16 @@
                   <%= link_to "教員一覧(編集)", teachers_path, class: "nav-link" %>
                 </li>
             <% end %>
-            <li class="nav-item">
-                <%= link_to "学生一覧", registered_students_path, class: "nav-link" %>
-              </li>
-            <li class="nav-item">
-                <%= link_to "教員一覧", registered_teachers_path, class: "nav-link" %>
-              </li>
+            <% if current_user.admin? || current_user.teacher? %>
+              <li class="nav-item">
+                  <%= link_to "学生一覧", registered_students_path, class: "nav-link" %>
+                </li>
+            <% end %>
+            <% if current_user.admin? || current_user.student? %>
+              <li class="nav-item">
+                  <%= link_to "教員一覧", registered_teachers_path, class: "nav-link" %>
+                </li>
+            <% end %>
             <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
           <% else %>
             <li><%= link_to 'ログイン', login_path %></li>

@@ -9,7 +9,13 @@ class SessionsController < ApplicationController
 
   	if user&.authenticate(session_params[:password])
   		session[:user_id] = user.id 
-  		redirect_to root_path, notice: 'ログインしました'
+      if user.admin?
+        redirect_to admin_users_path, notice: 'ログインしました'
+      elsif user.student?
+        redirect_to registered_teachers_path, notice: 'ログインしました'
+      elsif user.teacher   
+  	   	redirect_to registered_students_path, notice: 'ログインしました'
+      end
   	else
   		render :new, notice: 'ログインに失敗しました'
   	end
