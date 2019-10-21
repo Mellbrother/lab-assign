@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_admin
+
   def index
   	@users = User.all
   end
@@ -11,7 +13,7 @@ class Admin::UsersController < ApplicationController
   	@user = User.new(user_params)
 
   	if @user.save
-  		redirect_to admin_users_path, notice: "ID「#{@user.mynumber}」の人を登録しました"
+  		redirect_to admin_users_path, notice: "「#{@user.name}」を登録しました"
   	else 
   		render :new
   	end
@@ -29,7 +31,7 @@ class Admin::UsersController < ApplicationController
   	@user = User.find(params[:id])
 
   	if @user.update(user_params)
-  		redirect_to admin_users_path(@user), notice: "ID「#{@user.mynumber}」の人を更新しました"
+  		redirect_to admin_users_path(@user), notice: "「#{@user.name}」を更新しました"
   	else
   		render :new
   	end
@@ -38,7 +40,7 @@ class Admin::UsersController < ApplicationController
   def destroy
   	@user = User.find(params[:id])
   	@user.destroy
-  	redirect_to admin_users_url, notice: "ID「#{@user.mynumber}」の人を削除しました"
+  	redirect_to admin_users_url, notice: "「#{@user.name}」を削除しました"
   end
 
   private 
@@ -46,5 +48,10 @@ class Admin::UsersController < ApplicationController
   def user_params
   	params.require(:user).permit(:name, :email, :password, :password_confirmation, \
   		:admin, :student, :teacher)
-  end  	
+  end
+
+  def require_admin
+    redirect_to root_path unless current_user.admin?
+  end
+
 end

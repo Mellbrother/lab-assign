@@ -11,8 +11,7 @@
       <th><%= User.human_attribute_name(:email) %></th>
       <th><%= User.human_attribute_name(:admin) %></th>
       <th><%= User.human_attribute_name(:student) %></th>
-      <th><%= User.human_attribute_name(:name) %></th>
-      <th><%= User.human_attribute_name(:name) %></th>
+      <th><%= User.human_attribute_name(:teacher) %></th>
       <th></th>
       <th></th>
     </tr>
@@ -26,7 +25,7 @@
         <td><%= user.student? ? "〇" : "-" %></td>
         <td><%= user.teacher? ? "〇" : "-" %></td>
         <td><%= link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3' %></td>
-        <td><%= link_to '削除', [:admin, user], method: :delete, data: { confirm: "ID「#{user.mynumber}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %></td>
+        <td><%= link_to '削除', [:admin, user], method: :delete, data: { confirm: "「#{user.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -10,6 +10,8 @@ ja:
     models:
       student: 学生
       teacher: 教員
+      registered_student: 登録された学生
+      registered_teacher: 登録された教員
     attributes:
       student:
         id: ID
@@ -22,6 +24,17 @@ ja:
         mynumber: 教員番号
         name: 氏名
         research: 研究内容
+      registered_student:
+        rank: 順位
+      registered_teacher:
+        rank: 順位
+      user: 
+        name: 氏名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認用)
+        student: 学生
+        teacher: 教員
   date:
     abbr_day_names:
     - 日
