@@ -3,7 +3,8 @@ class RegisteredStudentsController < ApplicationController
   before_action :registered_student_rank_adjust, only: [:register]
 
   def index
-  	@students = Student.all
+  	@q = Student.all.ransack(params[:q])
+  	@students = @q.result(distinct: true)
   	@registered_student_ids = RegisteredStudent.all.map{|rs| rs.student_id}
   end
 
