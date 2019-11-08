@@ -2,7 +2,9 @@
 
 ## 簡単な説明
 このシステムは研究室配属の希望を管理するシステムです。
+
 学生は所属したい研究室の教員を希望順に登録することができ、教員は所属してほしい学生を希望順に登録することができます。
+
 このシステムを使うことで各学生と各教員の希望を把握することができます。
 
 ## 必要要件
@@ -11,13 +13,18 @@ docker : 19.03.1
 ## インストール
 dockerをインストールしてください。
 https://Github.com/Mellbrother/lab-assign からフォルダをクローンしてください。
-docker-compose run web rails new . --database=mysql
-docker-compose run web bundle exec rake db:create
-docker-compose run web bundle exec rake db:migrate
-docker-compose run web bundle exec rake db:seed
-docker-compose up -d
-http://localhost:3000 にアクセスしてください。
 
+docker-compose run web rails new . --database=mysql
+
+docker-compose run web bundle exec rake db:create
+
+docker-compose run web bundle exec rake db:migrate
+
+docker-compose run web bundle exec rake db:seed
+
+docker-compose up -d
+
+http://localhost:3000 にアクセスしてください。
 
 ## 機能
 (1)学生の場合
