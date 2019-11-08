@@ -60,7 +60,9 @@ http://localhost:3000 にアクセスしてください。
 ログイン後はユーザーの職種別に上記の機能を使うことができます。
 
 ## その他
-このシステムのデータを使い、各学生の研究室配属先を決定するプログラムを作成中です。
+このシステムのデータを使い、各学生の研究室配属先を決定するプログラムは以下のサイトにあります。
+
+https://github.com/Mellbrother/LaboratoryAssignmentAlgorithm
 
 ## 作者
 Keisuke Nemura
