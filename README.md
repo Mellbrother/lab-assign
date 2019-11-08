@@ -1,24 +1,57 @@
-# README
+# 研究室配属システム
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 簡単な説明
+このシステムは研究室配属の希望を管理するシステムです。
+学生は所属したい研究室の教員を希望順に登録することができ、教員は所属してほしい学生を希望順に登録することができます。
+このシステムを使うことで各学生と各教員の希望を把握することができます。
 
-Things you may want to cover:
+## 必要要件
+docker : 19.03.1
 
-* Ruby version
+## インストール
+dockerをインストールしてください。
+https://Github.com/Mellbrother/lab-assign からフォルダをクローンしてください。
+docker-compose run web rails new . --database=mysql
+docker-compose run web bundle exec rake db:create
+docker-compose run web bundle exec rake db:migrate
+docker-compose run web bundle exec rake db:seed
+docker-compose up -d
+http://localhost:3000 にアクセスしてください。
 
-* System dependencies
 
-* Configuration
+## 機能
+(1)学生の場合
+教員一覧から教員の登録ができます。
+自分の希望順に登録してください。
+登録されたデータは登録者一覧画面で確認できます。
+登録者一覧画面では登録者の削除や登録順の変更などができます。
 
-* Database creation
+(2)教員の場合
+学生一覧から学生の登録ができます。
+自分の希望順に登録してください。
+登録されたデータは登録者一覧画面で確認できます。
+登録者一覧画面では登録者の削除や登録順の変更などができます
 
-* Database initialization
+(3)管理者の場合
+ユーザー一覧の画面ではユーザーの登録、編集、削除ができます。
+学生一覧(編集)では学生データーの登録、編集、削除ができます。
+教員一覧(編集)では教員データの登録、編集、削除ができます。
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+一覧画面ではテーブルで各データを表示しています。
+テーブルのデータはテーブルヘッダの青文字の部分でソート可能です。
+検索機能を使うことでデータの絞り込みをすることもできます。
 
-* Deployment instructions
+## 使い方
+使用前にユーザー、学生データ、教員データの作成が必要です。
+管理者権限を持つユーザーを作成し、管理者権限を持つユーザー用画面でデータの登録をしてください。
+(ユーザーのメールアドレス、学生の学籍番号、教員の教員番号はそれぞれユニークにする必要があります。)
+※seeds.rbにランダムなデータを登録するプログラムを記述していますので、そちらを使っても構いません。
 
-* ...
+ログイン後はユーザーの職種別に上記の機能を使うことができます。
+
+## その他
+このシステムのデータを使い、各学生の研究室配属先を決定するプログラムを作成中です。
+
+## 作者
+Keisuke Nemura
