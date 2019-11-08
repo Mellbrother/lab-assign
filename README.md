@@ -14,6 +14,8 @@ docker : 19.03.1
 dockerをインストールしてください。
 https://Github.com/Mellbrother/lab-assign からフォルダをクローンしてください。
 
+docker-compose.ymlのあるディレクトリで以下のコマンドを入力してください。
+
 docker-compose run web rails new . --database=mysql
 
 docker-compose run web bundle exec rake db:create
